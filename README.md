@@ -10,4 +10,4 @@ python find_image.py https://www.nytimes.com/2017/04/22/sports/basketball/golden
 ```
 
 ### Output
-![alt text](https://github.com/keyanyang/Text-identification-and-images-finding/img/sample.png)
+![alt text](https://github.com/keyanyang/Text-identification-and-images-finding/blob/master/img/sample.png)
