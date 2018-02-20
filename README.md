@@ -1,6 +1,6 @@
-Text-identification-and-images-finding
+Text identification and images finding
 ===
-find best images based on the article. 
+Find best images based on the article. 
 This code borrows RAKE part from [Sujit Pal](http://sujitpal.blogspot.com/2013/03/implementing-rake-algorithm-with-nltk.html) and Google pictures download part from [Hardik Vasa]((https://github.com/hardikvasa/google-images-download)).
 
 ### Sample code
