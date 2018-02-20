@@ -7,11 +7,13 @@ from pyquery import PyQuery as pq
 import time
 import sys
 from unidecode import unidecode
+import os
 
 debug = False
 test = True
 
-url = 'https://www.nytimes.com/2017/04/22/sports/basketball/golden-state-warriors-steve-kerr-portland.html?rref=collection%2Fsectioncollection%2Fsports'
+url = sys.argv[1]
+# url = 'https://www.nytimes.com/2017/04/22/sports/basketball/golden-state-warriors-steve-kerr-portland.html?rref=collection%2Fsectioncollection%2Fsports'
 
 def is_number(s):
     try:
@@ -161,7 +163,6 @@ if test:
 
     rake = Rake("SmartStoplist.txt")
     keywords = rake.run(text)
-    print (keywords)
     search_keyword = [unidecode(keywords[0][0])]
 
     keywords = [' ']
@@ -248,8 +249,11 @@ if test:
         print("\n")
         i = i + 1
 
+        if not os.path.exists('outputs'):
+            os.makedirs('outputs')
+
         # write all the links into a test file. This text file will be created in the same directory as your code. You can comment out the below 3 lines to stop writing the output to the text file.
-        info = open('output.txt', 'a')  # Open the text file called database.txt
+        info = open('outputs/output.txt', 'a')  # Open the text file called database.txt
         info.write(
             str(i) + ': ' + str(search_keyword[i - 1]) + ": " + str(items) + "\n\n\n")  # Write the title of the page
         info.close()  # Close the file
@@ -272,31 +276,31 @@ if test:
             req = Request(items[k], headers={
                 "User-Agent": "Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.27 Safari/537.17"})
             response = urlopen(req)
-            output_file = open(str(k + 1) + ".jpg", 'wb')
+            output_file = open("outputs/" + str(k + 1) + ".jpg", 'wb')
             data = response.read()
             output_file.write(data)
-            response.close();
+            response.close()
 
             print("completed ====> " + str(k + 1))
 
-            k = k + 1;
+            k = k + 1
 
         except IOError:  # If there is any IOError
 
             errorCount += 1
             print("IOError on image " + str(k + 1))
-            k = k + 1;
+            k = k + 1
 
         except HTTPError as e:  # If there is any HTTPError
 
             errorCount += 1
             print("HTTPError" + str(k))
-            k = k + 1;
+            k = k + 1
         except URLError as e:
 
             errorCount += 1
             print("URLError " + str(k))
-            k = k + 1;
+            k = k + 1
 
     print("\n")
     print("All are downloaded")
